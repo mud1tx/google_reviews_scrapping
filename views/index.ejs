@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Review Scraper</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f2f2f2;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+
+      .container {
+        max-width: 600px;
+        width: 100%;
+        background: white;
+        padding: 25px;
+        margin: 15px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        color: #666;
+        margin-bottom: 5px;
+        font-size: 14px;
+      }
+
+      input[type="email"],
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+
+      button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        box-sizing: border-box;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      p.message.error {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+      }
+
+      p.message {
+        color: #28a745;
+        background-color: #dff0d8;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #d4edda;
+        text-align: center;
+        margin-top: 15px;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 600px) {
+        .container {
+          width: 100%;
+          margin: 0 auto;
+          border-radius: 10px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+          font-size: 26px;
+          margin-bottom: 30px;
+        }
+
+        label {
+          font-size: 17px;
+          margin-bottom: 15px;
+        }
+
+        input[type="email"],
+        input[type="text"] {
+          font-size: 17px;
+          padding: 15px;
+          margin-bottom: 30px;
+        }
+
+        button {
+          font-size: 20px;
+          padding: 18px;
+          margin-bottom: 20px;
+        }
+
+        p.message.error {
+          color: #721c24;
+          background-color: #f8d7da;
+          border-color: #f5c6cb;
+        }
+
+        p.message {
+          font-size: 18px;
+          padding: 15px;
+          margin-top: 30px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Review Scraper</h2>
+      <form action="/submit" method="post" id="scraperForm">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+        <label for="searchTerm">Search Term:</label>
+        <input type="text" id="searchTerm" name="searchTerm" required />
+        <button type="submit" id="submitBtn">Submit</button>
+      </form>
+
+      <% if (typeof message !== 'undefined' && message) { %>
+      <p class="message<%= isError ? ' error' : '' %>"><%= message %></p>
+      <% } %>
+    </div>
+    <script>
+      document
+        .getElementById("scraperForm")
+        .addEventListener("submit", function (e) {
+          const submitBtn = document.getElementById("submitBtn");
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Loading...";
+        });
+
+      window.onload = function () {
+        if ("<%= message %>") {
+          const submitBtn = document.getElementById("submitBtn");
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Submit";
+        }
+      };
+    </script>
+  </body>
+</html>
